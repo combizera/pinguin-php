@@ -2,16 +2,10 @@
     <nav>
         <ul>
             <li>
-                <a href="inc/for.php">For</a>
+                <a href="include.php">Include</a>
             </li>
             <li>
-                <a href="inc/foreach.php">Foreach</a>
-            </li>
-            <li>
-                <a href="inc/while.php">While</a>
-            </li>
-            <li>
-                <a href="inc/dowhile.php">Do/While</a>
+                <a href="require.php">Require</a>
             </li>
         </ul>
     </nav>
