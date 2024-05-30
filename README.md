@@ -19,7 +19,30 @@ A herança é um mecanismo que permite a criação de uma nova classe a partir d
 
 #### Polimorfismo
 
-O polimorfismo é a capacidade que um objeto tem de se comportar de diferentes formas. 
+O polimorfismo é a capacidade que um objeto tem de se comportar de diferentes formas.
+```
+    class Animal
+    {
+        public function falar()
+        {
+            return "Som";
+        }
+    }
+
+    class Cachorro extends Animal
+    {
+        public function falar(){
+            return "auau";
+        }
+    }
+
+    class Gato extends Animal
+    {
+        public function falar(){
+            return "miau";
+        }
+    }
+```
 
 ### Exemplo de uma classe
 
