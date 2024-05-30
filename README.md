@@ -24,6 +24,9 @@ O polimorfismo é a capacidade que um objeto tem de se comportar de diferentes f
 ### Exemplo de uma classe
 
 Classes são declaradas utilizando a palavra reservada `` class``.
-```angular2html
-class Animal {
-```
+
+### Visibilidade dos atributos
+Os objetos pode ser:
+* **Públicos**: acessíveis de qualquer lugar;
+* **Protegidos**: acessíveis apenas dentro da classe e subclasses;
+* **Privados**: acessíveis apenas dentro da classe.

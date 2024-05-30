@@ -2,80 +2,103 @@
 <html lang="pt-br">
 <head>
     <?php include 'inc/head.php'; ?>
-    <title>Classes</title>
+    <?php $title = "POO - Heranças" ?>
+    <title><?= $title ?></title>
 </head>
 <body>
 <div>
-    <h1>Classes - O básico</h1>
+    <h1><?= $title ?></h1>
 </div>
 
 <h2>Classes - Início</h2>
+
 <?php
-    class Pessoa
-    {
-        protected string $nome;
-        protected int $idade;
-        public ?string $nacionalidade = null;
+    class Veiculo {
+        protected string $tracao = 'animal';
+        protected int $rodas = 0;
+        protected bool $hasMotor = false;
+        protected bool $emMovimento = false;
+        private ?string $tipoCombustivel = null;
 
-        public function  __construct(string $nome, int $idade)
+        public function movimentar(string $combustivel):self
         {
-            $this->nome = $nome;
-            $this->idade = $idade;
-        }
-
-        public function andar():string
-        {
-            return $this->nome . ' está andando...';
-        }
-
-        public function falar():string
-        {
-            return $this->nome . ' está falando...';
-        }
-
-        public function getNome():string
-        {
-            return $this->nome;
-        }
-
-        public function getIdade():int
-        {
-            return $this->idade;
-        }
-
-        public function setNome(string $nome): self
-        {
-            $this->nome = $nome;
+            $this->emMovimento = true;
+            $this->setCombustivel($combustivel);
 
             return $this;
         }
 
-        public function setIdade(int $idade): self
+        public function parar():self
         {
-            $this->idade = $idade;
+            $this->emMovimento = false;
+
             return $this;
         }
 
-        public function tempoRestante(): int
+        public function emMovimento():bool
         {
-            return 100 - $this->idade;
+            return $this->emMovimento;
+        }
+
+        public function __construct()
+        {
+            if($this->tracao === 'automotor'){
+                $this->hasMotor = true;
+            }
+            return $this;
+        }
+
+        private function setCombustivel($combustivel):void
+        {
+            $this->tipoCombustivel = $combustivel;
         }
     }
 
-    $pessoa = new Pessoa("ygor", 25);
+    class Moto extends Veiculo
+    {
+        protected string $tracao = 'automotor';
+        protected int $rodas = 2;
+    }
 
-    $pessoa->nacionalidade = "brasileira";
-//    $pessoa->nome = "andrezinho gameplays";
-    $pessoa->setNome("Andrezinho gameplays");
-    var_dump($pessoa);
+    class Skate extends Veiculo
+    {
+        protected string $tracao = 'deus';
+        protected int $rodas = 4;
+    }
 
+    $skate = new Skate();
+    $moto = new Moto();
+
+    var_dump($moto->movimentar('gasolina')->emMovimento());
     echo "<br><br>";
-
-    echo $pessoa->andar() . "<br>";
-    echo $pessoa->falar() . "<br>";
-    echo 'A ' . $pessoa->getNome() . ' tem mais ' . $pessoa->tempoRestante() . " anos de vida. <br>";
+    var_dump($moto);
+    echo "<br><br>";
+    var_dump((new Veiculo()));
+    echo "<br><br>";
+    var_dump($skate);
 ?>
 
+<hr>
+
+<h2>Acessando métodos públicos e privados</h2>
+
+<?php
+    echo $moto->movimentar('gasolina')->emMovimento();
+
+    class Caminhao extends Veiculo{
+        protected string $tracao = 'automotor';
+        protected int $rodas = 12;
+    }
+    $caminhao = new Caminhao();
+    $caminhao->movimentar('diesel')->emMovimento();
+
+    echo "<br><br>";
+    var_dump($caminhao);
+
+    echo "<br><br>";
+    $caminhao->parar();
+    var_dump($caminhao);
+?>
 
 </body>
 </html>
